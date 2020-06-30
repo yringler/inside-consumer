@@ -1,14 +1,18 @@
 package main
 
 import (
-	"github.com/grokify/wordpress-xml-go"
+	"fmt"
+
+	wordpressxml "github.com/grokify/wordpress-xml-go"
 )
 
 func main() {
 	wp := wordpressxml.NewWordpressXml()
-	err := wp.ReadXml("insidechassidus.xml")
+	err := wp.ReadXml("archive.xml")
 	if err != nil {
 		panic(err)
 	}
-	wp.WriteMetaCsv("articles.csv")
+	fmt.Println(len(wp.Channel.Items))
+	fmt.Println(wp.Channel.Items[0].Content)
+	fmt.Println(wp.Channel.Items[0].Categories[0].DisplayName)
 }
